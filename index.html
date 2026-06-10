@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Forever - Happy Anniversary</title>
+    <!-- Elegant Typography from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Ionicons for modern premium UI icons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Heart Canvas for Floating Particles -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Music Control (Optional Background Music) -->
+    <div class="music-container" id="music-container">
+        <button id="music-toggle" class="music-btn" aria-label="Toggle music">
+            <span class="music-icon-wrapper">
+                <ion-icon name="musical-notes-outline" class="music-note-icon"></ion-icon>
+                <ion-icon name="volume-mute-outline" class="music-mute-icon hidden"></ion-icon>
+            </span>
+        </button>
+        <audio id="bg-music" loop>
+            <!-- Check for the user's specific song first, then generic fallback -->
+            <source src="Sansarini (සංසාරිණී) - Yasas Medagedara _ Lyric Video [smMky1B4FLM].mp3" type="audio/mpeg">
+            <source src="music.mp3" type="audio/mpeg">
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- LOCK SCREEN SECTION -->
+    <section class="lock-screen-wrapper" id="lock-screen">
+        <div class="lock-card-glow"></div>
+        <div class="lock-card">
+            <div class="lock-header">
+                <div class="heart-lock-icon">
+                    <ion-icon name="heart-dislike-outline" id="lock-icon"></ion-icon>
+                </div>
+                <h1>Our Secret Garden</h1>
+                <p>Enter the coordinates of our love to unlock our memories</p>
+            </div>
+            
+            <form id="login-form" autocomplete="off">
+                <div class="input-group">
+                    <input type="text" id="username" required placeholder=" " autocomplete="off">
+                    <label for="username">Her Beautiful Name</label>
+                    <div class="input-line"></div>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="password" required placeholder=" " autocomplete="off">
+                    <label for="password">Anniversary Date (YYYY.MM.DD)</label>
+                    <div class="input-line"></div>
+                </div>
+                
+                <button type="submit" class="unlock-btn" id="unlock-btn">
+                    <span>Unlock Memories</span>
+                    <ion-icon name="key-outline"></ion-icon>
+                </button>
+            </form>
+            
+            <p id="error-message" class="error-msg"></p>
+        </div>
+    </section>
+
+    <!-- MAIN DASHBOARD SECTION (Initially Hidden) -->
+    <main class="dashboard-wrapper hidden" id="dashboard">
+        <!-- Floating Rose Petals / Hearts Container -->
+        <div class="falling-elements" id="falling-container"></div>
+        
+        <!-- Full-Screen Couple Background Overlay -->
+        <div class="background-overlay"></div>
+
+        <div class="content-container">
+            <!-- HEADER -->
+            <header class="main-header fade-in-element">
+                <span class="anniversary-badge">Our Anniversary</span>
+                <h1 class="main-title">Happy Anniversary, <span class="glowing-text">Chamodi</span></h1>
+                <p class="subtitle">Every second with you is a beautiful page in our love story.</p>
+            </header>
+
+            <!-- LIVE COUNTER SECTION -->
+            <section class="counter-section fade-in-element">
+                <h2 class="section-title">Time We've Spent Loving Each Other</h2>
+                <div class="counter-grid" id="counter-grid">
+                    <div class="counter-card">
+                        <span class="counter-number" id="years">00</span>
+                        <span class="counter-label">Years</span>
+                    </div>
+                    <div class="counter-card">
+                        <span class="counter-number" id="days">00</span>
+                        <span class="counter-label">Days</span>
+                    </div>
+                    <div class="counter-card">
+                        <span class="counter-number" id="hours">00</span>
+                        <span class="counter-label">Hours</span>
+                    </div>
+                    <div class="counter-card">
+                        <span class="counter-number" id="minutes">00</span>
+                        <span class="counter-label">Minutes</span>
+                    </div>
+                    <div class="counter-card">
+                        <span class="counter-number" id="seconds">00</span>
+                        <span class="counter-label">Seconds</span>
+                    </div>
+                </div>
+                <p class="counter-since">Since June 13, 2025</p>
+            </section>
+
+            <!-- ROMANTIC SENTENCES / INTERACTIVE LETTERS -->
+            <section class="memories-section fade-in-element">
+                <h2 class="section-title">Special Words For You</h2>
+                <p class="section-subtitle">Click on each card to reveal the special messages I wrote for you.</p>
+                
+                <div class="letters-grid">
+                    <!-- Letter 1 -->
+                    <div class="letter-card" data-letter="1">
+                        <div class="letter-inner">
+                            <div class="letter-front">
+                                <div class="envelope-seal">
+                                    <ion-icon name="heart-circle-outline"></ion-icon>
+                                </div>
+                                <h3>My Promise to You</h3>
+                                <p class="card-hint">Tap to open</p>
+                            </div>
+                            <div class="letter-back">
+                                <h3>My Promise</h3>
+                                <div class="letter-text">
+                                    <p>From the moment you entered my life, everything changed for the better. I promise to stand by you, laugh with you, cry with you, and love you more deeply with each passing day. You are my home, my peace, and my greatest adventure.</p>
+                                </div>
+                                <button class="close-letter-btn">Close</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Letter 2 -->
+                    <div class="letter-card" data-letter="2">
+                        <div class="letter-inner">
+                            <div class="letter-front">
+                                <div class="envelope-seal">
+                                    <ion-icon name="heart-circle-outline"></ion-icon>
+                                </div>
+                                <h3>Why I Love You</h3>
+                                <p class="card-hint">Tap to open</p>
+                            </div>
+                            <div class="letter-back">
+                                <h3>Why You're Special</h3>
+                                <div class="letter-text">
+                                    <p>I love the way your eyes sparkle when you laugh, the warmth of your smile, and the gentle way you care for the world. You inspire me to be a better person, and your love is the most precious gift I have ever received.</p>
+                                </div>
+                                <button class="close-letter-btn">Close</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Letter 3 -->
+                    <div class="letter-card" data-letter="3">
+                        <div class="letter-inner">
+                            <div class="letter-front">
+                                <div class="envelope-seal">
+                                    <ion-icon name="heart-circle-outline"></ion-icon>
+                                </div>
+                                <h3>To Our Future</h3>
+                                <p class="card-hint">Tap to open</p>
+                            </div>
+                            <div class="letter-back">
+                                <h3>Our Beautiful Future</h3>
+                                <div class="letter-text">
+                                    <p>As we celebrate this milestone, I look forward to all the beautiful tomorrows we will share. Together, there is no dream too big or challenge too hard. Here's to building a lifetime of memories, hand in hand.</p>
+                                </div>
+                                <button class="close-letter-btn">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CUSTOM VIDEO SECTION -->
+            <section class="video-section fade-in-element">
+                <h2 class="section-title">Our Special Moment</h2>
+                <p class="section-subtitle">Click below to watch a celebration of us.</p>
+                
+                <div class="video-player-container">
+                    <!-- Elegant Custom Video Poster / Trigger -->
+                    <div class="video-poster-wrapper" id="video-poster">
+                        <div class="poster-overlay"></div>
+                        <div class="poster-content">
+                            <div class="play-btn-wrapper">
+                                <ion-icon name="play" class="play-icon"></ion-icon>
+                            </div>
+                            <h3>Play Our Video</h3>
+                            <p>Turn up the volume & enjoy</p>
+                        </div>
+                    </div>
+
+                    <!-- Actual HTML5 Video (Hidden initially, shown when play clicked) -->
+                    <div class="video-element-wrapper hidden" id="video-element-wrapper">
+                        <video id="anniversary-video" preload="auto" playsinline>
+                            <source src="copy_5B3EA7DF-37BF-431E-96BB-CAEB13BBED19.MOV" type="video/mp4">
+                            <source src="copy_5B3EA7DF-37BF-431E-96BB-CAEB13BBED19.MOV" type="video/quicktime">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-controls">
+                            <button id="video-play-pause" class="control-btn"><ion-icon name="play"></ion-icon></button>
+                            <div class="progress-bar-container" id="progress-container">
+                                <div class="progress-bar" id="progress-bar"></div>
+                            </div>
+                            <span class="video-time" id="video-time">0:00 / 0:30</span>
+                            <button id="video-mute" class="control-btn"><ion-icon name="volume-high"></ion-icon></button>
+                            <button id="video-fullscreen" class="control-btn"><ion-icon name="expand"></ion-icon></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="main-footer">
+                <p>Made with Love for Chamodi</p>
+                <div class="footer-heart"><ion-icon name="heart"></ion-icon></div>
+                <p>Forever & Always</p>
+            </footer>
+        </div>
+    </main>
+
+    <!-- Confetti Canvas for celebration success -->
+    <canvas id="confetti-canvas" class="hidden"></canvas>
+
+    <!-- Main JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
